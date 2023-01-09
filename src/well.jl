@@ -1,4 +1,7 @@
-LETTERS = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+# handy vectors of the alphabet for indexing
+LETTERS = LazyString.(Char.(65:89))
+letters = LazyString.(Char.(97:122))
+
 
 """
 # n_cols(n_wells::Int)
@@ -44,15 +47,15 @@ end
 function well_from_row_col(row, col; pad = 2)
     if isa(row, Real)
         row = LETTERS[row]
-    elseif isa(row, Char) 
-        row = uppercase(row)
-    else
-        error("Row must be numeric or character.")
+    else# isa(row, String) 
+        row = uppercase.(row)
+    #else
+     #   error("Row must be numeric or character.")
     end
 
-    col = string(col, pad = pad)
+    col = string.(col, pad = pad)
     
-    return "$row$col"
+    return String.(row) .* String.(col)
 end
 
 function well_join(row, col)
@@ -77,18 +80,14 @@ end
 function well_from_index(index::Int; plate_size = 96, colwise = true)
     rows = n_rows(plate_size)
     cols = n_cols(plate_size)
-    
+
     if colwise
-        row_i = mod1(index, rows)
-        col_i = fld(index, cols) + 1
+        wells = ["$row$col" for col in string.(1:cols, pad = 2) for row in LETTERS[1:rows]]
     else 
-        row_i = fld(index, rows)
-        col_i = mod1(index, cols)
+        wells = ["$row$col" for row in LETTERS[1:rows] for col in string.(1:cols, pad = 2)]
     end
 
-    well = well_from_row_col(row_i, col_i)
-
-    return well
+    return wells[index]
     
 end
 
