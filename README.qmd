@@ -1,0 +1,22 @@
+---
+title: "README"
+format: gfm
+jupyter: julia-1.8
+---
+# Plates
+[![Build Status](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml?query=branch%3Amain)
+
+Useful functions for working with plate-based data inside of Julia.
+
+Primarily oriented around dealing with plate-based data in combination with DataFrames.jl
+
+```{julia}
+using Pkg
+Pkg.activate(".")
+using Plates
+
+read_meta("test/metadata.csv")
+```
+
+
+
