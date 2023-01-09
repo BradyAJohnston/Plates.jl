@@ -8,15 +8,15 @@ jupyter: julia-1.8
 
 Useful functions for working with plate-based data inside of Julia.
 
-Primarily oriented around dealing with plate-based data in combination with DataFrames.jl
+Primarily oriented around dealing with plate-based data in combination with `DataFrames.jl`
 
 ```{julia}
+#| results: markup
 using Pkg
 Pkg.activate(".")
 using Plates
 
-read_meta("test/metadata.csv")
+first(read_meta("test/metadata.csv"), 12)
 ```
 
-
-
+This is inpsired by the very useful [`{plater}`](https://docs.ropensci.org/plater/) R package for layout of the metadata file.
