@@ -1,7 +1,3 @@
-function add_well(dat::DataFrames.DataFrame)
-
-end
-
 function read_meta(file::String)
     lines = readlines(file)
     n_cols = length(split(lines[1], ",")) - 1
@@ -9,15 +5,18 @@ function read_meta(file::String)
 
     n_meta = length(lines) / (n_rows + 1)
 
-    csv = CSV.File(file, header=false)
     meta_dfs = DataFrames.DataFrame()
     for i in 1:n_meta
         row_start = Int((i - 1) * (n_rows + 2) + 2)
         row_end = Int(row_start + n_rows - 1)
-
+        
         meta_value =   split(lines[row_start-1], ",")[1]
+        
+        # use the particular section of lines that are already read in
+        # and treat them as IO for CSV to read from
+        segment = IOBuffer(join(lines[row_start:row_end], "\n"))
+        dat = DataFrames.DataFrame(CSV.File(segment, header = false))
 
-        dat = DataFrames.DataFrame(csv[row_start:row_end])
         DataFrames.rename!(dat, prepend!([Symbol("$i") for i in 1:n_cols], [:row]))
         dat = DataFrames.stack(dat, DataFrames.Not(:row))
         
@@ -33,6 +32,8 @@ function read_meta(file::String)
         end
 
     end
+    
     DataFrames.transform!(meta_dfs, [:row, :col] => well_from_row_col => :well)
     return DataFrames.select!(meta_dfs, :well, :row, :col, :)
+
 end
