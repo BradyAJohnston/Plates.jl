@@ -1,6 +1,6 @@
 # handy vectors of the alphabet for indexing
-LETTERS = LazyString.(Char.(65:89))
-letters = LazyString.(Char.(97:122))
+LETTERS = string.(Char.(65:89))
+letters = string.(Char.(97:122))
 
 
 """
