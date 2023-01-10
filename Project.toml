@@ -1,7 +1,7 @@
 name = "Plates"
 uuid = "1c6fd12c-7a2e-40f5-89b7-037ba63cf0c8"
 authors = ["Brady Johnston"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"

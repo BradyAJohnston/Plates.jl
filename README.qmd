@@ -10,10 +10,23 @@ Useful functions for working with plate-based data inside of Julia.
 
 Primarily oriented around dealing with plate-based data in combination with `DataFrames.jl`
 
+## Installation
+
 ```{julia}
-#| results: markup
+#| eval: false
+using Pkg
+Pkg.add(url = "https://github.com/bradyajohnston/Plates.jl.git")
+```
+
+```{julia}
+#| echo: false
 using Pkg
 Pkg.activate(".")
+```
+
+
+```{julia}
+#| results: markup
 using Plates
 
 first(read_meta("test/metadata.csv"), 12)
