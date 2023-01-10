@@ -23,8 +23,6 @@ using Pkg
 Pkg.add(url = "https://github.com/bradyajohnston/Plates.jl.git")
 ```
 
-      Activating project at `C:\Users\BradyJohnston\Documents\GitHub\Plates.jl`
-
 ``` julia
 using Plates
 

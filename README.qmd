@@ -20,6 +20,8 @@ Pkg.add(url = "https://github.com/bradyajohnston/Plates.jl.git")
 
 ```{julia}
 #| echo: false
+#| warning: false
+#| message: false
 using Pkg
 Pkg.activate(".")
 ```
