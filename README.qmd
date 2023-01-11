@@ -26,12 +26,23 @@ using Pkg
 Pkg.activate(".")
 ```
 
+## Basic Usage
+
+The idea behind `Plates.jl` is to enable the addition of metadata for plate-based experiments to be associated with observations from plate readers.
+
+The metadata can be set out in a 'plate format' as shown in the example below. Each variable has its own plate layout, with the name in the top left corner. The columns and rows are labelled with numbers and letters. Values for each of the wells are then placed in the plate layout, corresponding to the values in the experiment. Each variable block is separated by an empty row.
+
+![image](https://user-images.githubusercontent.com/36021261/211939595-7bf2b2b2-0424-4a45-9d73-b0774abcb6cd.png)
+
+Reading in the metadata shown above, produces a dataframe in the long-form, with a column for the `well`, `row`, `col` and a column for each variable. These can then be joined to the observations in another dataframe, by the `well` column.
 
 ```{julia}
 #| results: markup
 using Plates
 
-first(read_meta("test/metadata.csv"), 12)
+meta = read_meta("test/metadata.csv")
+
+first(meta, 12)
 ```
 
 This is inpsired by the very useful [`{plater}`](https://docs.ropensci.org/plater/) R package for layout of the metadata file.
