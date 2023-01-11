@@ -4,7 +4,12 @@ format: gfm
 jupyter: julia-1.8
 ---
 
+<!-- badges: start -->
+
 [![Build Status](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Codecov test coverage](https://codecov.io/gh/bradyajohnston/plasmapR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bradyajohnston/Plates.jl?branch=main)
+
+  <!-- badges: end -->
 
 Useful functions for working with plate-based data inside of Julia.
 
@@ -32,7 +37,7 @@ The idea behind `Plates.jl` is to enable the addition of metadata for plate-base
 
 The metadata can be set out in a 'plate format' as shown in the example below. Each variable has its own plate layout, with the name in the top left corner. The columns and rows are labelled with numbers and letters. Values for each of the wells are then placed in the plate layout, corresponding to the values in the experiment. Each variable block is separated by an empty row.
 
-![image](https://user-images.githubusercontent.com/36021261/211939595-7bf2b2b2-0424-4a45-9d73-b0774abcb6cd.png)
+![a screenshot of the plate format, to save as a .csv file](https://user-images.githubusercontent.com/36021261/211939595-7bf2b2b2-0424-4a45-9d73-b0774abcb6cd.png)
 
 Reading in the metadata shown above, produces a dataframe in the long-form, with a column for the `well`, `row`, `col` and a column for each variable. These can then be joined to the observations in another dataframe, by the `well` column.
 
