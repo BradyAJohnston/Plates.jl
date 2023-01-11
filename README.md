@@ -1,7 +1,5 @@
-README
+Plates.jl
 ================
-
-# Plates
 
 <div>
 
