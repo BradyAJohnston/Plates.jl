@@ -70,187 +70,92 @@ the column first, as this is how data is stored in Julia. This means
 first by setting `colwise = false`.
 
 ``` julia
-Plates.well_from_index(12)
+ind = [13, 12, 8, 9]
+well_from_index.(ind)
 ```
 
-    "D02"
+    4-element Vector{String}:
+     "E02"
+     "D02"
+     "H01"
+     "A02"
 
 ``` julia
-Plates.well_from_index(8) 
+well_from_index.(ind, colwise = true)
 ```
 
-    "H01"
+    4-element Vector{String}:
+     "E02"
+     "D02"
+     "H01"
+     "A02"
 
 ``` julia
-Plates.well_from_index(13)
+well_from_index.(ind, 384, colwise = true)
 ```
 
-    "E02"
+    4-element Vector{String}:
+     "M01"
+     "L01"
+     "H01"
+     "I01"
 
 ``` julia
-Plates.well_from_index(13, colwise = true)
+rows = [1, "A", 8, "H"]
+well_from_row_col.(rows, 3)
 ```
 
-    "E02"
+    4-element Vector{String}:
+     "A03"
+     "A03"
+     "H03"
+     "H03"
 
 ``` julia
-Plates.well_from_index(12, colwise = false)
+wells = ["a1", "H01", "H1", "c6", "h1", "A12"]
+well_to_row_let.(wells)
 ```
 
-    "A12"
+    6-element Vector{String}:
+     "A"
+     "H"
+     "H"
+     "C"
+     "H"
+     "A"
 
 ``` julia
-Plates.well_from_row_col(1, 3)
+well_to_row_num.(wells)
 ```
 
-    "A03"
+    6-element Vector{Int64}:
+     1
+     8
+     8
+     3
+     8
+     1
 
 ``` julia
-Plates.well_from_row_col("A", 3)
+well_to_col_num.(wells)
 ```
 
-    "A03"
+    6-element Vector{Int16}:
+      1
+      1
+      1
+      6
+      1
+     12
 
 ``` julia
-Plates.well_from_row_col(8, 3)
+well_format.(wells)
 ```
 
-    "H03"
-
-``` julia
-Plates.well_from_row_col("H", 3)
-```
-
-    "H03"
-
-``` julia
-Plates.well_to_index("a1")
-```
-
-    1
-
-``` julia
-Plates.well_to_index("H01")
-```
-
-    8
-
-``` julia
-Plates.well_to_index("H01")
-```
-
-    8
-
-``` julia
-Plates.well_to_index("H01")
-```
-
-    8
-
-``` julia
-Plates.well_to_row_let("h01")
-```
-
-    "H"
-
-``` julia
-Plates.well_to_row_let("h1")
-```
-
-    "H"
-
-``` julia
-Plates.well_to_row_let("H1")
-```
-
-    "H"
-
-``` julia
-Plates.well_to_row_let("A12")
-```
-
-    "A"
-
-``` julia
-Plates.well_to_row_num("h01")
-```
-
-    8
-
-``` julia
-Plates.well_to_row_num("h1")
-```
-
-    8
-
-``` julia
-Plates.well_to_row_num("H1")
-```
-
-    8
-
-``` julia
-Plates.well_to_row_num("A12")
-```
-
-    1
-
-``` julia
-Plates.well_to_row_num("c6")
-```
-
-    3
-
-``` julia
-Plates.well_format("c6")
-```
-
-    "C06"
-
-``` julia
-Plates.well_format("A06")
-```
-
-    "A06"
-
-``` julia
-Plates.well_format("A6")
-```
-
-    "A06"
-
-``` julia
-Plates.well_format("a6")
-```
-
-    "A06"
-
-``` julia
-Plates.well_to_col_num("a6")
-```
-
-    6
-
-``` julia
-Plates.well_to_col_num("A06")
-```
-
-    6
-
-``` julia
-Plates.well_to_col_num("h7")
-```
-
-    7
-
-``` julia
-Plates.well_to_col_num("H07")
-```
-
-    7
-
-``` julia
-Plates.well_to_col_num("G07")
-```
-
-    7
+    6-element Vector{String}:
+     "A01"
+     "H01"
+     "H01"
+     "C06"
+     "H01"
+     "A12"
