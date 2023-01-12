@@ -45,9 +45,112 @@ Reading in the metadata shown above, produces a dataframe in the long-form, with
 #| results: markup
 using Plates
 
-meta = read_meta("test/metadata.csv")
+meta = read_meta("test/plate96.csv")
 
 first(meta, 12)
 ```
 
 This is inpsired by the very useful [`{plater}`](https://docs.ropensci.org/plater/) R package for layout of the metadata file.
+
+## Formatting Functions
+
+Plates also comes with a number of convenience functions for formatting to and from well IDs, 
+
+Most of these functions start with the `well_*` prefix.
+
+For the `well_*_index()` functions, by default `Plates.jl` indexes down the column first, as this is how data is stored in Julia. This means `A01` is `1`, `H01` is 8, and `A02` is 9. You can index across the rows first by setting `colwise = false`.
+
+```{julia}
+Plates.well_from_index(12)
+```
+```{julia}
+Plates.well_from_index(8) 
+```
+```{julia}
+Plates.well_from_index(13)
+```
+```{julia}
+Plates.well_from_index(13, colwise = true)
+```
+```{julia}
+Plates.well_from_index(12, colwise = false)
+```
+```{julia}
+Plates.well_from_row_col(1, 3)
+```
+```{julia}
+Plates.well_from_row_col("A", 3)
+```
+```{julia}
+Plates.well_from_row_col(8, 3)
+```
+```{julia}
+Plates.well_from_row_col("H", 3)
+```
+```{julia}
+Plates.well_to_index("a1")
+```
+```{julia}
+Plates.well_to_index("H01")
+```
+```{julia}
+Plates.well_to_index("H01")
+```
+```{julia}
+Plates.well_to_index("H01")
+```
+```{julia}
+Plates.well_to_row_let("h01")
+```
+```{julia}
+Plates.well_to_row_let("h1")
+```
+```{julia}
+Plates.well_to_row_let("H1")
+```
+```{julia}
+Plates.well_to_row_let("A12")
+```
+```{julia}
+Plates.well_to_row_num("h01")
+```
+```{julia}
+Plates.well_to_row_num("h1")
+```
+```{julia}
+Plates.well_to_row_num("H1")
+```
+```{julia}
+Plates.well_to_row_num("A12")
+```
+```{julia}
+Plates.well_to_row_num("c6")
+```
+```{julia}
+Plates.well_format("c6")
+```
+```{julia}
+Plates.well_format("A06")
+```
+```{julia}
+Plates.well_format("A6")
+```
+```{julia}
+Plates.well_format("a6")
+```
+```{julia}
+Plates.well_to_col_num("a6")
+```
+```{julia}
+Plates.well_to_col_num("A06")
+```
+```{julia}
+Plates.well_to_col_num("h7")
+```
+```{julia}
+Plates.well_to_col_num("H07")
+```
+```{julia}
+Plates.well_to_col_num("G07")
+```
+

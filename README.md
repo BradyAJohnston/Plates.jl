@@ -35,7 +35,8 @@ Values for each of the wells are then placed in the plate layout,
 corresponding to the values in the experiment. Each variable block is
 separated by an empty row.
 
-![image](https://user-images.githubusercontent.com/36021261/211939595-7bf2b2b2-0424-4a45-9d73-b0774abcb6cd.png)
+![a screenshot of the plate format, to save as a .csv
+file](https://user-images.githubusercontent.com/36021261/211939595-7bf2b2b2-0424-4a45-9d73-b0774abcb6cd.png)
 
 Reading in the metadata shown above, produces a dataframe in the
 long-form, with a column for the `well`, `row`, `col` and a column for
@@ -45,15 +46,211 @@ dataframe, by the `well` column.
 ``` julia
 using Plates
 
-meta = read_meta("test/metadata.csv")
+meta = read_meta("test/plate96.csv")
 
 first(meta, 12)
 ```
-
-    [ Info: Precompiling Plates [1c6fd12c-7a2e-40f5-89b7-037ba63cf0c8]
 
 <div><div style = "float: left;"><span>12×6 DataFrame</span></div><div style = "clear: both;"></div></div><div class = "data-frame" style = "overflow-x: scroll;"><table class = "data-frame" style = "margin-bottom: 6px;"><thead><tr class = "header"><th class = "rowNumber" style = "font-weight: bold; text-align: right;">Row</th><th style = "text-align: left;">well</th><th style = "text-align: left;">row</th><th style = "text-align: left;">col</th><th style = "text-align: left;">Drug</th><th style = "text-align: left;">Concentration</th><th style = "text-align: left;">Bacteria</th></tr><tr class = "subheader headerLastRow"><th class = "rowNumber" style = "font-weight: bold; text-align: right;"></th><th title = "String" style = "text-align: left;">String</th><th title = "String" style = "text-align: left;">String</th><th title = "Int16" style = "text-align: left;">Int16</th><th title = "Union{Missing, InlineStrings.String1}" style = "text-align: left;">String1</th><th title = "Union{Missing, Float64}" style = "text-align: left;">Float64?</th><th title = "Union{Missing, InlineStrings.String31}" style = "text-align: left;">String31</th></tr></thead><tbody><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">1</td><td style = "text-align: left;">A01</td><td style = "text-align: left;">A</td><td style = "text-align: right;">1</td><td style = "text-align: left;">A</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">E. coli</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">2</td><td style = "text-align: left;">B01</td><td style = "text-align: left;">B</td><td style = "text-align: right;">1</td><td style = "text-align: left;">A</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">S. enterocolitis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">3</td><td style = "text-align: left;">C01</td><td style = "text-align: left;">C</td><td style = "text-align: right;">1</td><td style = "text-align: left;">A</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">C. trachomatis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">4</td><td style = "text-align: left;">D01</td><td style = "text-align: left;">D</td><td style = "text-align: right;">1</td><td style = "text-align: left;">A</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">N. gonorrhoeae</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">5</td><td style = "text-align: left;">E01</td><td style = "text-align: left;">E</td><td style = "text-align: right;">1</td><td style = "text-align: left;">B</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">E. coli</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">6</td><td style = "text-align: left;">F01</td><td style = "text-align: left;">F</td><td style = "text-align: right;">1</td><td style = "text-align: left;">B</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">S. enterocolitis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">7</td><td style = "text-align: left;">G01</td><td style = "text-align: left;">G</td><td style = "text-align: right;">1</td><td style = "text-align: left;">B</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">C. trachomatis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">8</td><td style = "text-align: left;">H01</td><td style = "text-align: left;">H</td><td style = "text-align: right;">1</td><td style = "text-align: left;">B</td><td style = "text-align: right;">100.0</td><td style = "text-align: left;">N. gonorrhoeae</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">9</td><td style = "text-align: left;">A02</td><td style = "text-align: left;">A</td><td style = "text-align: right;">2</td><td style = "text-align: left;">A</td><td style = "text-align: right;">20.0</td><td style = "text-align: left;">E. coli</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">10</td><td style = "text-align: left;">B02</td><td style = "text-align: left;">B</td><td style = "text-align: right;">2</td><td style = "text-align: left;">A</td><td style = "text-align: right;">20.0</td><td style = "text-align: left;">S. enterocolitis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">11</td><td style = "text-align: left;">C02</td><td style = "text-align: left;">C</td><td style = "text-align: right;">2</td><td style = "text-align: left;">A</td><td style = "text-align: right;">20.0</td><td style = "text-align: left;">C. trachomatis</td></tr><tr><td class = "rowNumber" style = "font-weight: bold; text-align: right;">12</td><td style = "text-align: left;">D02</td><td style = "text-align: left;">D</td><td style = "text-align: right;">2</td><td style = "text-align: left;">A</td><td style = "text-align: right;">20.0</td><td style = "text-align: left;">N. gonorrhoeae</td></tr></tbody></table></div>
 
 This is inpsired by the very useful
 [`{plater}`](https://docs.ropensci.org/plater/) R package for layout of
 the metadata file.
+
+## Formatting Functions
+
+Plates also comes with a number of convenience functions for formatting
+to and from well IDs,
+
+Most of these functions start with the `well_*` prefix.
+
+For the `well_*_index()` functions, by default `Plates.jl` indexes down
+the column first, as this is how data is stored in Julia. This means
+`A01` is `1`, `H01` is 8, and `A02` is 9. You can index across the rows
+first by setting `colwise = false`.
+
+``` julia
+Plates.well_from_index(12)
+```
+
+    "D02"
+
+``` julia
+Plates.well_from_index(8) 
+```
+
+    "H01"
+
+``` julia
+Plates.well_from_index(13)
+```
+
+    "E02"
+
+``` julia
+Plates.well_from_index(13, colwise = true)
+```
+
+    "E02"
+
+``` julia
+Plates.well_from_index(12, colwise = false)
+```
+
+    "A12"
+
+``` julia
+Plates.well_from_row_col(1, 3)
+```
+
+    "A03"
+
+``` julia
+Plates.well_from_row_col("A", 3)
+```
+
+    "A03"
+
+``` julia
+Plates.well_from_row_col(8, 3)
+```
+
+    "H03"
+
+``` julia
+Plates.well_from_row_col("H", 3)
+```
+
+    "H03"
+
+``` julia
+Plates.well_to_index("a1")
+```
+
+    1
+
+``` julia
+Plates.well_to_index("H01")
+```
+
+    8
+
+``` julia
+Plates.well_to_index("H01")
+```
+
+    8
+
+``` julia
+Plates.well_to_index("H01")
+```
+
+    8
+
+``` julia
+Plates.well_to_row_let("h01")
+```
+
+    "H"
+
+``` julia
+Plates.well_to_row_let("h1")
+```
+
+    "H"
+
+``` julia
+Plates.well_to_row_let("H1")
+```
+
+    "H"
+
+``` julia
+Plates.well_to_row_let("A12")
+```
+
+    "A"
+
+``` julia
+Plates.well_to_row_num("h01")
+```
+
+    8
+
+``` julia
+Plates.well_to_row_num("h1")
+```
+
+    8
+
+``` julia
+Plates.well_to_row_num("H1")
+```
+
+    8
+
+``` julia
+Plates.well_to_row_num("A12")
+```
+
+    1
+
+``` julia
+Plates.well_to_row_num("c6")
+```
+
+    3
+
+``` julia
+Plates.well_format("c6")
+```
+
+    "C06"
+
+``` julia
+Plates.well_format("A06")
+```
+
+    "A06"
+
+``` julia
+Plates.well_format("A6")
+```
+
+    "A06"
+
+``` julia
+Plates.well_format("a6")
+```
+
+    "A06"
+
+``` julia
+Plates.well_to_col_num("a6")
+```
+
+    6
+
+``` julia
+Plates.well_to_col_num("A06")
+```
+
+    6
+
+``` julia
+Plates.well_to_col_num("h7")
+```
+
+    7
+
+``` julia
+Plates.well_to_col_num("H07")
+```
+
+    7
+
+``` julia
+Plates.well_to_col_num("G07")
+```
+
+    7
