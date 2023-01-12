@@ -81,17 +81,7 @@ well_from_index.(ind)
      "A02"
 
 ``` julia
-well_from_index.(ind, colwise = true)
-```
-
-    4-element Vector{String}:
-     "E02"
-     "D02"
-     "H01"
-     "A02"
-
-``` julia
-well_from_index.(ind, 384, colwise = true)
+well_from_index.(ind, 384)
 ```
 
     4-element Vector{String}:
@@ -99,6 +89,26 @@ well_from_index.(ind, 384, colwise = true)
      "L01"
      "H01"
      "I01"
+
+``` julia
+well_from_index.(ind, 384, colwise = false)
+```
+
+    4-element Vector{String}:
+     "A13"
+     "A12"
+     "A08"
+     "A09"
+
+``` julia
+well_from_index.(ind, 384, colwise = false)
+```
+
+    4-element Vector{String}:
+     "A13"
+     "A12"
+     "A08"
+     "A09"
 
 ``` julia
 rows = [1, "A", 8, "H"]
@@ -113,6 +123,18 @@ well_from_row_col.(rows, 3)
 
 ``` julia
 wells = ["a1", "H01", "H1", "c6", "h1", "A12"]
+well_format.(wells)
+```
+
+    6-element Vector{String}:
+     "A01"
+     "H01"
+     "H01"
+     "C06"
+     "H01"
+     "A12"
+
+``` julia
 well_to_row_let.(wells)
 ```
 
@@ -147,15 +169,3 @@ well_to_col_num.(wells)
       6
       1
      12
-
-``` julia
-well_format.(wells)
-```
-
-    6-element Vector{String}:
-     "A01"
-     "H01"
-     "H01"
-     "C06"
-     "H01"
-     "A12"

@@ -65,10 +65,13 @@ ind = [13, 12, 8, 9]
 well_from_index.(ind)
 ```
 ```{julia}
-well_from_index.(ind, colwise = true)
+well_from_index.(ind, 384)
 ```
 ```{julia}
-well_from_index.(ind, 384, colwise = true)
+well_from_index.(ind, 384, colwise = false)
+```
+```{julia}
+well_from_index.(ind, 384, colwise = false)
 ```
 ```{julia}
 rows = [1, "A", 8, "H"]
@@ -76,6 +79,9 @@ well_from_row_col.(rows, 3)
 ```
 ```{julia}
 wells = ["a1", "H01", "H1", "c6", "h1", "A12"]
+well_format.(wells)
+```
+```{julia}
 well_to_row_let.(wells)
 ```
 ```{julia}
@@ -83,8 +89,5 @@ well_to_row_num.(wells)
 ```
 ```{julia}
 well_to_col_num.(wells)
-```
-```{julia}
-well_format.(wells)
 ```
 
