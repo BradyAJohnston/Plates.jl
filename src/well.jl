@@ -77,7 +77,7 @@ function count_along_plate(x, y)
     return modulo
 end
 
-function well_from_index(index::Int; plate_size = 96, colwise = true)
+function well_from_index(index::Int, plate_size = 96; colwise = true)
     rows = n_rows(plate_size)
     cols = n_cols(plate_size)
 
@@ -91,7 +91,7 @@ function well_from_index(index::Int; plate_size = 96, colwise = true)
     
 end
 
-function well_to_index(well::String; plate_size = 96, colwise = true)
+function well_to_index(well::String, plate_size = 96; colwise = true)
     col_i = well_to_col_num(well)
     row_i = well_to_row_num(well)
 
