@@ -6,7 +6,7 @@ Plates.jl
 [![Build
 Status](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/bradyajohnston/Plates.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Codecov test
-coverage](https://codecov.io/gh/bradyajohnston/plasmapR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bradyajohnston/Plates.jl?branch=main)
+coverage](https://codecov.io/gh/bradyajohnston/Plates.jl/branch/main/graph/badge.svg)](https://app.codecov.io/gh/bradyajohnston/Plates.jl?branch=main)
 
 <!-- badges: end -->
 
